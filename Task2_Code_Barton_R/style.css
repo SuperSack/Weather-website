@@ -18,6 +18,7 @@ body {
     width: 100%;
     max-width: 420px;
     margin: 1em;
+    opacity: 90%;
 }
 
 .search {
