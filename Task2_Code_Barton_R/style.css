@@ -57,4 +57,28 @@ button:hover {
 
 h1.temp {
     margin: 0;
+    margin-bottom: 0.3em;
 }
+
+.flex {
+    display: flex;
+    align-items: center;
+}
+
+.description {
+    text-transform: capitalize;
+    margin-left: 9px;
+}
+
+.weather.loading {
+    visibility: hidden;
+    max-height: 20px;
+}
+
+.weather.loading:after {
+    visibility: visible;
+    content: "Loading...";
+    color: white;
+}
+
+35:05
