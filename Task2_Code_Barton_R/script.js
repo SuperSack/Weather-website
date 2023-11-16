@@ -41,4 +41,51 @@ document.querySelector(".search-bar").addEventListener("keyup", function (event)
     }
 })
 
-weather.fetchWeather("Norwich")
+weather.fetchWeather("London")
+
+function getWeather() {
+  let temperature = document.getElementById("temperature");
+  let description = document.getElementById("description");
+  let location = document.getElementById("location");
+  let humidity = document.getElementById("humidity")
+  let wind = document.getElementById("wind")
+
+  let api = "https://api.openweathermap.org/data/2.5/weather";
+  let apiKey = "0ec023cda580faf1f85b38ec7416d270";
+
+  location.innerHTML = "Locating...";
+
+  navigator.geolocation.getCurrentPosition(success, error);
+
+  function success(position) {
+    latitude = position.coords.latitude;
+    longitude = position.coords.longitude;
+
+    let url =
+      api +
+      "?lat=" +
+      latitude +
+      "&lon=" +
+      longitude +
+      "&appid=" +
+      apiKey +
+      "&units=metric";
+
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        let temp = data.main.temp;
+        temperature.innerHTML = temp + "°C";
+        location.innerHTML =
+          data.name + " (" + latitude + "°, " + longitude + "°)";
+        description.innerHTML = data.weather[0].main;
+      });
+  }
+
+  function error() {
+    location.innerHTML = "Unable to retrieve your location";
+  }
+}
+
+getWeather();
