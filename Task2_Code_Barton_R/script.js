@@ -78,8 +78,11 @@ function getWeather() {
         let temp = data.main.temp;
         temperature.innerHTML = temp + "°C";
         location.innerHTML =
-          data.name + " (" + latitude + "°, " + longitude + "°)";
+          "Weather in " + data.name;
         description.innerHTML = data.weather[0].main;
+        humidity.innerHTML = "humidity: " + data.main.humidity + "%";
+        wind.innerHTML = "Wind speed: " + data.wind.speed + "mph";
+        document.body.style.backgroundImage = "url('https://source.unsplash.com/1600x900/?" + data.name +"')"
       });
   }
 
